@@ -1,14 +1,7 @@
 "use client";
 
 import type { Word } from "@/data/words";
-
-function speak(text: string) {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.rate = 0.85;
-  window.speechSynthesis.speak(utterance);
-}
+import { speak } from "@/lib/speak";
 
 export default function WordCard({ word }: { word: Word }) {
   return (

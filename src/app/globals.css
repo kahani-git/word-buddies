@@ -5,3 +5,46 @@ body {
   min-height: 100vh;
   color: #1e293b;
 }
+
+/* Whack-a-Word */
+.whack-board button {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'><text y='40' font-size='38'>🔨</text></svg>") 12 12, pointer;
+  touch-action: manipulation;
+}
+
+.mole {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  animation: mole-pop 180ms ease-out;
+}
+
+.mole-hit,
+.mole-miss {
+  animation: mole-bonk 450ms ease-in forwards;
+}
+
+.mole-miss {
+  animation-name: mole-shake;
+}
+
+@keyframes mole-pop {
+  from { transform: translate(-50%, 110%); }
+  to { transform: translate(-50%, 0); }
+}
+
+@keyframes mole-bonk {
+  0% { transform: translate(-50%, 0) scale(1); }
+  30% { transform: translate(-50%, 0) scale(1.15, 0.8); }
+  100% { transform: translate(-50%, 110%) scale(1); }
+}
+
+@keyframes mole-shake {
+  0%, 100% { transform: translate(-50%, 0) rotate(0); }
+  25% { transform: translate(-50%, 0) rotate(-12deg); }
+  75% { transform: translate(-50%, 0) rotate(12deg); }
+}
